@@ -1,0 +1,4 @@
+mysql-data/*
+public/*
+._*
+.DS_Store
