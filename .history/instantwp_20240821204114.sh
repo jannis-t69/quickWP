@@ -58,7 +58,7 @@ echo "INSTANTWP_PORT=$INSTANTWP_PORT"
 if [ "$INSTANTWP_REINSTALL" = no ]
 then
     docker stop instantwp
-    docker compose up --build --force-recreate --project-name -d
+    docker compose up --build --force-recreate --project-name-d
     exit
 else
     docker stop instantwp && docker rm instantwp && docker rmi -f instantwp_web
