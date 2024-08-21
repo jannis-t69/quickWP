@@ -1,2 +1,3 @@
 # instantWP
-Create a wordpress container shell script
+Create a WordPress container shell script
+
