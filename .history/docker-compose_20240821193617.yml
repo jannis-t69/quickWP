@@ -1,0 +1,30 @@
+version: "3"
+services:
+  web:
+    build: ./docker
+    container_name: instantwp
+    environment:
+      # - INSTANTWP_URL
+      # - INSTANTWP_PLUGINS
+      # - INSTANTWP_LOCALE
+      # - INSTANTWP_PORT
+      - TZ=Europe/Athens
+      - INSTANTWP_URL=$INSTANTWP_URL"
+echo "INSTANTWP_PLUGINS=$INSTANTWP_PLUGINS"
+echo "INSTANTWP_LOCALE=$INSTANTWP_LOCALE"
+echo "INSTANTWP_REINSTALL=$INSTANTWP_REINSTALL"
+echo "INSTANTWP_PORT=$INSTANTWP_PORT"
+    ports:
+      - "6080:80"
+      - "6306:3306"
+    volumes:
+      - ./public/:/var/www/html/
+      - ./mysql-data/:/var/lib/mysql/
+      - ./root:/root
+    networks:
+      - instawp
+    restart: "unless-stopped"
+
+networks:
+  instawp:
+     enable_ipv6: false

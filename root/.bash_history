@@ -34,3 +34,7 @@ which mysql
 ll
 ll html/
 nano /entrypoint.sh
+echo $INSTANTWP_
+echo $ 
+set
+env 
