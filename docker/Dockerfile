@@ -1,9 +1,51 @@
 FROM debian:bookworm-slim
 
 
-# Install nginx and php
+# Install nginx and php8.3
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y nginx php php-cli php-fpm php-json php-sqlite3 php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath nano curl bash-completion
+
+# Install Webserver of choice
+RUN apt-get update && apt-get install -y nginx
+
+#Install additional utilities    
+RUN apt-get update && apt-get install -y nano \
+    curl \
+    bash-completion
+
+# Install php Repository, php and php-modules
+RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
+RUN apt-get -y update && \
+    apt-get -y install php8.3 \
+    php8.3-redis \
+    php8.3-sqlite3 \
+    php8.3-memcached \
+    php8.3-opcache \
+    php8.3-curl \
+    php8.3-fpm \
+    php8.3-gd \
+    php8.3-intl \
+    php8.3-imagick \
+    php8.3-mysql \
+    php8.3-mbstring \
+    php8.3-zip \
+    php8.3-xml \
+    php8.3-xmlrpc \
+    php8.3-bcmath \
+    php8.3-bz2 \
+    php8.3-calendar \
+    php8.3-ctype \
+    php8.3-ftp \
+    php8.3-gettext \
+    php8.3-iconv \
+    php8.3-mysqli \
+    php8.3-PDO \
+    php8.3-Phar \
+    php8.3-readline \
+    php8.3-SimpleXML \
+    php8.3-zip \
+    php8.3-soap \
+    php8.3-apcu
+
 
 # Run nginx as daemon
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf

@@ -9,18 +9,20 @@ InstantWP is a Docker based tool to instantly spin up a WordPress site. It's mea
 ## Usage
 
 - Run `./instantwp`
-- Open your browser: http://127.0.0.1
+- Open your browser in the with the parameter (-u) specified IP/Domain : http://<IP/Domain> or the defaul onet set in instantwp.sh
 
 ## Available parameters
 
 - u: Domain
 - p: List of plugins you want to install. Comma separated list.
 - l: Locale ([https://make.wordpress.org/polyglots/teams/](https://make.wordpress.org/polyglots/teams/))
+- r: Set to no for no-reinstall
 
 Example command with parameters:  
 `./instantwp -u localhost -p bbpress,akismet -l fi`
 
-WordPress files are located in public-folder.
+WordPress files are located in the public folder.
+SQL files are located in the mysql-data folder.
 
 ## Credentials
 
@@ -28,19 +30,6 @@ WP admin account: instantwp / instantwp
 
 ## Cleanup and reinstall
 
-If you want to remove the current WordPress installation and reinstall it you can run:  
-`./instantwp clean`
-
-## Good to know
-
-- This tool IS NOT SUITABLE for production use
-- If you want to reinstall WordPress just manually empty public or mysql-data -folder.
-
-## Author
-
-Jaakko Alajoki
-twitter.com/mrjaamo
-
-## License
-
-GPLv2
+By default the script resets the installation and spins up the container in detached mode.
+If you don't want to remove the current WordPress installation and reinstall it you can run:  
+`./instantwp noreset`

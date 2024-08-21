@@ -1,38 +1,36 @@
-echo $shell
+rm -rf /var/www/html/*
+cd /
+/entrypoint.sh 
+/entrypoint.sh 
 bash
+cd 
+. .bashrc 
+cd /
 service --status-all
-service --status-all
-tail -f /var/log/nginx/error.log 
-curl http://127.0.0.1:6080
-lsof
-lsof -i :6080
-lsof -i :6080
-lsof -i :80
-curl http://127.0.0.1:80
-tail -f /var/log/nginx/error.log 
-tail -f /var/log/nginx/access.log 
-ll
-cd
-ls -l
-pwd
-id
-ls -l
+/entrypoint.sh 
 ll
 ll html/
-lsof -n -i :80
-lsof -P -n -i :80
-tail -f /var/log/nginx/access.log 
-lsof -P -n -i :80
-curl http://127.0.0.1:80
-service --status-all
+/entrypoint.sh 
+mysql_install_db --user=mysql --ldata=/var/lib/mysql/
+/entrypoint.sh 
+nano /entrypoint.sh
+/entrypoint.sh 
+nano /entrypoint.sh
+/entrypoint.sh 
+wp core install --allow-root --url=$INSTANTWP_URL --title=InstantWP --admin_user=instantwp --admin_password=instantwp --admin_email=info@example.com
 ll html/
-id nginx
-cat /etc/passwd
-chown -R www-data:www-data html/
-mysql -e "CREATE USER 'instantwp'@'*' IDENTIFIED BY 'instantwp';"
-mysql -e "GRANT ALL PRIVILEGES ON * . * TO 'instantwp'@'*';"
-mysql -e "FLUSH PRIVILEGES;"
+cd html/
+wp core install --allow-root --url=$INSTANTWP_URL --title=InstantWP --admin_user=instantwp --admin_password=instantwp --admin_email=info@example.com
+ll
+wp core download --allow-root --locale=$INSTANTWP_LOCALE
+wp core install --allow-root --url=$INSTANTWP_URL --title=InstantWP --admin_user=instantwp --admin_password=instantwp --admin_email=info@example.com
+ll
+rm -rf *
+ll
+wp core download --allow-root --locale=$INSTANTWP_LOCALE
+/entrypoint.sh 
+which mysql_install_db
+which mysql
+ll
 ll html/
-service --status-all
-nano 
-apt search bash-completion
+nano /entrypoint.sh

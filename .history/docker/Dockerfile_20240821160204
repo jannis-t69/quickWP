@@ -1,0 +1,55 @@
+FROM debian:bookworm-slim
+
+
+# Install nginx and php8.3
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install Webserver of choice
+RUN apt-get update && apt-get install -y nginx
+
+# Install php Repository, php and php-modules
+RUN curl -sSL https://packages.sury.org/php/README.txt | bash -x
+RUN apt-get -y update && \
+    apt-get -y install php8.3 \
+    php8.3-cli \
+    php8.3-fpm \
+    php8.3-json \
+    php8.3-sqlite3 \
+    php8.3-common \
+    php8.3-mysql \
+    php8.3-zip \
+    php8.3-gd \
+    php8.3-mbstring \
+    php8.3-curl \
+    php8.3-xml \
+    php8.3-pear \
+    php8.3-bcmath \
+
+    nano curl bash-completion
+
+# Run nginx as daemon
+RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+
+# Install mariadb (with empty root password)
+RUN apt-get update && apt-get -y install default-mysql-server
+
+# Add out local configs in.
+ADD default /etc/nginx/sites-available/
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod 755 /entrypoint.sh
+
+# Install wp-cli
+RUN bash -c "curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
+RUN bash -c "chmod +x wp-cli.phar"
+RUN bash -c "mv wp-cli.phar /usr/local/bin/wp"
+
+# Install composer
+RUN bash -c "curl https://getcomposer.org/installer -o /composer-setup.php8.3"
+RUN bash -c "chmod +x /composer-setup.php"
+RUN bash -c "php8.3 /composer-setup.php"
+RUN bash -c "mv /composer.phar /usr/local/bin/composer"
+
+WORKDIR /var/www/html/
+
+# Start daemons.
+ENTRYPOINT ["/entrypoint.sh"]
