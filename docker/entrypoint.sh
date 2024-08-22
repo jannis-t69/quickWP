@@ -28,14 +28,14 @@ if [ "$QUICKWP_REINSTALL" = 1 ]; then
 
     # Create database.
     /usr/bin/mysql -uroot -e "CREATE DATABASE app;"
-    /usr/bin/mysql -e "CREATE USER 'QUICKWP'@'localhost' IDENTIFIED BY 'QUICKWP';"
-    /usr/bin/mysql -e "GRANT ALL PRIVILEGES ON * . * TO 'QUICKWP'@'localhost';"
+    /usr/bin/mysql -e "CREATE USER 'quickwp'@'localhost' IDENTIFIED BY 'quickwp';"
+    /usr/bin/mysql -e "GRANT ALL PRIVILEGES ON * . * TO 'quickwp'@'localhost';"
     /usr/bin/mysql -e "FLUSH PRIVILEGES;"
 
     # Download WordPress
     /usr/local/bin/wp core download --allow-root --path=/var/www/html --force --locale=$QUICKWP_LOCALE
 
-    /usr/local/bin/wp config create --allow-root --dbname=app --dbuser=QUICKWP --dbpass=QUICKWP --extra-php <<PHP
+    /usr/local/bin/wp config create --allow-root --dbname=app --dbuser=quickwp --dbpass=quickwp --extra-php <<PHP
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
 define( 'WP_HOME', "http://$QUICKWP_URL:$QUICKWP_PORT" );
@@ -43,7 +43,7 @@ define( 'WP_SITEURL', "http://$QUICKWP_URL:$QUICKWP_PORT" );
 PHP
 
     # Install
-    /usr/local/bin/wp core install --allow-root --url=$QUICKWP_URL --title=QUICKWP --admin_user=QUICKWP --admin_password=QUICKWP --admin_email=info@example.com
+    /usr/local/bin/wp core install --allow-root --url=$QUICKWP_URL --title=QUICKWP --admin_user=quickwp --admin_password=quickwp --admin_email=quickwp@example.com
 
     # Uninstall WordPress default plugins
     /usr/local/bin/wp plugin uninstall --all --allow-root
@@ -67,11 +67,12 @@ else
 fi
 
 # Add write permissions to uploads.
-mkdir -p /var/www/html/wp-content/uploads/
-chmod -R 777 /var/www/html/wp-content/uploads/
+#mkdir -p /var/www/html/wp-content/uploads/
+#chmod -R 755 /var/www/html/wp-content/uploads/
+# Set the correct permissions
 chown -R www-data:www-data /var/www/html
-
-echo "All done! Now open your browser: http://192.168.2.5:6080"
+find /var/www/html -type f -exec chmod 644 {} \;
+find /var/www/html -type d -exec chmod 755 {} \;
 
 # Run nginx
 exec nginx

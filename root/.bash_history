@@ -38,3 +38,5 @@ echo $INSTANTWP_
 echo $ 
 set
 env 
+ll
+ll html/

@@ -56,6 +56,8 @@ if [ "$QUICKWP_REINSTALL" = no ]
 then
     docker stop QUICKWP
     docker compose up --build --force-recreate -d
+    echo "Container deployed and starting"
+    echo "WordPress can be accessed on http://$QUICKWP_URL:$QUICKWP_PORT/wp-login.php"
     exit
 else
     docker stop quickwp && docker rm quickwp && docker rmi -f quickwp_www
@@ -63,5 +65,7 @@ else
     rm -rf ./mysql-database/*
     rm -rf ./public_html/*
     docker compose up --build --force-recreate -d
+    echo "Container deployed and starting...wait for the services to fire up"
+    echo "WordPress can be accessed on http://$QUICKWP_URL:$QUICKWP_PORT/wp-login.php"
     exit
 fi

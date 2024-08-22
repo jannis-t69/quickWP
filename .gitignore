@@ -1,5 +1,5 @@
-mysql-data/*
-public/*
+mysql-database/*
+public_html/*
 ._*
 .DS_Store
 .history/
