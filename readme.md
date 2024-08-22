@@ -1,6 +1,6 @@
 # QuickWP
 
-QuickWP script can be used for spinning up a docker WordPress container temporary test site, for debugging and testing. It is not meant for production purpose
+QuickWP script can be used to spin up a docker WordPress container for a temporary test site. It is not meant for production purposes
 
 ## Requirements
 
