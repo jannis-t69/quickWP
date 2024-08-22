@@ -1,31 +1,27 @@
 version: "3"
 services:
-  web:
+  www:
     build: ./docker
     env_file: ./.env
-    container_name: instantwp
+    container_name: quickwp
     environment:
-      # - INSTANTWP_URL
-      # - INSTANTWP_PLUGINS
-      # - INSTANTWP_LOCALE
-      # - INSTANTWP_PORT
       - TZ=Europe/Athens
-      - INSTANTWP_URL=${INSTANTWP_URL}
-      - INSTANTWP_PLUGINS=${INSTANTWP_PLUGINS}
-      - INSTANTWP_LOCALE=${INSTANTWP_LOCALE}
-      - INSTANTWP_REINSTALL=${INSTANTWP_REINSTALL}
-      - INSTANTWP_PORT=${INSTANTWP_PORT}
+      - QUICKWP_URL=${QUICKWP_URL}
+      - QUICKWP_PLUGINS=${QUICKWP_PLUGINS}
+      - QUICKWP_LOCALE=${QUICKWP_LOCALE}
+      - QUICKWP_REINSTALL=${QUICKWP_REINSTALL}
+      - QUICKWP_PORT=${QUICKWP_PORT}
     ports:
       - "6080:80"
       - "6306:3306"
     volumes:
-      - ./public/:/var/www/html/
-      - ./mysql-data/:/var/lib/mysql/
+      - ./public_html/:/var/www/html/
+      - ./mysql-database/:/var/lib/mysql/
       - ./root:/root
     networks:
-      - instawp
+      - quickwp
     restart: "unless-stopped"
 
 networks:
-  instawp:
+  quickwp:
      enable_ipv6: false

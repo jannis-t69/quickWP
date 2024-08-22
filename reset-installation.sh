@@ -1,8 +1,8 @@
 #!/bin/bash
-
-echo "Cleaning up WordPress..."
-rm -rf ./mysql-data/*
-rm -rf ./public/*
-
 # Remove container and image files
-docker stop instantwp && docker rm $_ && docker rmi -f instantwp_web
+docker stop quickwp && docker rm $_ && docker rmi -f quickwp_www
+
+    echo "Reseting installation ..."
+    rm -rf ./mysql-database/*
+    rm -rf ./public_html/*
+
