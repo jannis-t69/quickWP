@@ -48,6 +48,9 @@ Those can be set in quickwp.sh as default or specified with the -i and -p parame
 
 Most of the time during testing i need the WordPress installation to have a certain state, for example with WooCommerce and Elementor enabled, so i use the two shell scripts to save and restore the database's state
 
+- `wordpress-quickwp-script-SQL-Backup.sh`
+- `wordpress-quickwp-script-SQL-Restore.sh`
+
 The `wordpress-quickwp-script-SQL-Backup.sh` script asks for a description which will be added to the SQL dump's filename
 The `wordpress-quickwp-script-SQL-Restore.sh` script lists the .sql files found in the script's configured database dump folder, which then i can copy/paste to restore
 
