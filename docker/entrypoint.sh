@@ -66,6 +66,9 @@ else
     service php8.3-fpm start
 fi
 
+# Download and install adminer database tool
+wget https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1-en.php -O /var/www/html/adminer.php
+
 # Add write permissions to uploads.
 # Set the correct permissions for the case ...
 chown -R www-data:www-data /var/www/html

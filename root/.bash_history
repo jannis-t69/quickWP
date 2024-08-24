@@ -56,3 +56,6 @@ ll html/wp-content/uploads/demos/san-francisco/
 tail -f html/wp-content/debug.log 
 chown -R www-data:www-data html/
 tree
+ll html/
+curl https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php --output /var/www/html
+curl https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php --output /var/www/html/adminer.php

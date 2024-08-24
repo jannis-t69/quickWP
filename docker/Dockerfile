@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y nginx
 #Install additional utilities    
 RUN apt-get update && apt-get install -y nano \
     curl \
+    wget \
     bash-completion
 
 # Install php Repository, php and php-modules
@@ -46,12 +47,16 @@ RUN apt-get -y update && \
     php8.3-soap \
     php8.3-apcu
 
+RUN apt-get update && apt-get -y install default-mysql-server
+# Install mariadb (with empty root password)
+
+# Remove everything that is no longer necessary.
+RUN apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/*
 
 # Run nginx as daemon
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
-
-# Install mariadb (with empty root password)
-RUN apt-get update && apt-get -y install default-mysql-server
 
 # Add out local configs in.
 ADD default /etc/nginx/sites-available/
