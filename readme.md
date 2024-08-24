@@ -35,12 +35,6 @@ Adminer has been added as a database editor with the same credentials as WordPre
 
 - `http://URL:Port/adminer.php`
 
-## Cleanup and reinstall
-
-By default the script resets the installation and spins up the container in detached mode.
-If you don't want to remove the current WordPress installation and reinstall it you can run:  
-`./quickwp -r no`
-
 ## Port forwarding and WordPress URL
 
 For docker port-forwarding, other the default port 80, the following two settings must be set in wp-config.php so that Wordpress can be accessed from outside the container.
@@ -49,6 +43,19 @@ For docker port-forwarding, other the default port 80, the following two setting
 - `define( 'WP_SITEURL', "http://$QUICKWP_URL:<forwarded host-Port>" );`
 
 Those can be set in quickwp.sh as default or specified with the -i and -p parameters
+
+## Database current state backup and restore
+
+Most of the time during testing i need the WordPress installation to have a certain state, for example with WooCommerce and Elementor enabled, so i use the two shell scripts to save and restore the database's state
+
+The `wordpress-quickwp-script-SQL-Backup.sh` script asks for a description which will be added to the SQL dump's filename
+The `wordpress-quickwp-script-SQL-Restore.sh` script lists the .sql files found in the script's configured database dump folder, which then i can copy/paste to restore
+
+## Cleanup and reinstall
+
+By default the script resets the installation and spins up the container in detached mode.
+If you don't want to remove the current WordPress installation and reinstall it you can run:  
+`./quickwp -r no`
 
 ## Delete container and image
 
