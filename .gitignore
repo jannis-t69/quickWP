@@ -3,3 +3,5 @@ public_html/*
 ._*
 .DS_Store
 .history/
+DbBackups/
+demos/

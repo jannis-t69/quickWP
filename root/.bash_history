@@ -40,3 +40,19 @@ set
 env 
 ll
 ll html/
+ll html/wp-content/uploads/
+chown -R www-data:www-data html/
+tail -f html/wp-content/debug.log 
+chown -R www-data:www-data html/
+ll html/wp-content/uploads/demos/
+tail -f html/wp-content/debug.log 
+ll html/wp-content/uploads/demos/san-francisco/
+tail -f html/wp-content/debug.log 
+chown -R www-data:www-data html/
+ll html/wp-content/uploads/demos/san-francisco/ 
+find html/ -type d -exec chmod 755 {} \;
+find html/ -type f -exec chmod 644 {} \;
+ll html/wp-content/uploads/demos/san-francisco/ 
+tail -f html/wp-content/debug.log 
+chown -R www-data:www-data html/
+tree
