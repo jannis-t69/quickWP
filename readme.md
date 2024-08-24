@@ -24,10 +24,16 @@ Example command with parameters:
 
 WordPress files are located in the public folder. SQL files are located in the mysql-data folder.
 
-## Wordpress Admin Login:
+## Wordpress & Adminer Database Editor Admin Login
 
 - username `quickwp`
 - password `quickwp`
+
+## Database Editor
+
+Adminer has been added as a database editor with the same credentials as WordPress
+
+- `http://URL:Port/adminer.php`
 
 ## Cleanup and reinstall
 
@@ -39,8 +45,8 @@ If you don't want to remove the current WordPress installation and reinstall it 
 
 For docker port-forwarding, other the default port 80, the following two settings must be set in wp-config.php so that Wordpress can be accessed from outside the container.
 
-- `define( 'WP_HOME', "http://$quickwp_URL:<forwarded host-Port>" );`
-- `define( 'WP_SITEURL', "http://$quickwp_URL:<forwarded host-Port>" );`
+- `define( 'WP_HOME', "http://$QUICKWP_URL:<forwarded host-Port>" );`
+- `define( 'WP_SITEURL', "http://$QUICKWP_URL:<forwarded host-Port>" );`
 
 Those can be set in quickwp.sh as default or specified with the -i and -p parameters
 
