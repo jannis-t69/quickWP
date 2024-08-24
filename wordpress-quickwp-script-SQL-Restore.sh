@@ -23,7 +23,7 @@ DATABASE_NAME='wordpress'
 ################## Update below values  ########################
 echo "You can copy/paste one of the following backups to restore: "
 
-find ${DB_BACKUP_PATH}/SQL -printf "%T@ %Tc %p\n" -iregex '.+\.sql' | sort -n
+find ${DB_BACKUP_PATH}/SQL -type f -printf "%Tc %p\n" -iregex '.+\.sql' | sort -n
 read -p "Enter SQl-file to restore: " sqlfile
 
 echo "Dropping Database: "${DATABASE_NAME}
