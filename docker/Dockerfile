@@ -58,7 +58,10 @@ RUN apt-get autoremove -y && \
 # Run nginx as daemon
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 
-# Add out local configs in.
+# Copy local plugins to image
+COPY plugins /tmp/plugins
+
+# Add our local configs in.
 ADD default /etc/nginx/sites-available/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh

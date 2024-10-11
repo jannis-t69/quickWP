@@ -55,8 +55,8 @@ PHP
     # Uninstall WordPress default plugins
     /usr/local/bin/wp plugin uninstall --all --allow-root
 
-    # Install my standard plugins
-    /usr/local/bin/wp plugin install woocommerce log-http-requests --activate --allow-root 
+    # Install MY standard plugins
+    /usr/local/bin/wp plugin install woocommerce log-http-requests /tmp/plugins/wp-all-import-pro.zip /tmp/plugins/wpai-woocommerce-add-on.zip /tmp/plugins/custom-product-tabs-wp-all-import-add-on.zip --activate --allow-root 
 
     # Install plugins
     IFS=',' read -r -a plugins_array <<< "$QUICKWP_PLUGINS"
