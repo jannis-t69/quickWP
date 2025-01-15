@@ -9,5 +9,4 @@ root/
 temp/
 docker/plugins/
 docker/ssl/cloudflare*
-docker/default-ssl.conf
 log/*
