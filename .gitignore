@@ -8,6 +8,6 @@ demos/
 root/
 temp/
 docker/plugins/
-ssl/
+docker/ssl/*
 docker/default-ssl.conf
 log/*
