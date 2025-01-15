@@ -8,7 +8,6 @@ demos/
 root/
 temp/
 docker/plugins/
-docker/ssl/cloudlare-private-key.pem
-docker/ssl/cloudflare-origin-certificate.pem
+docker/ssl/cloudflare*
 docker/default-ssl.conf
 log/*
