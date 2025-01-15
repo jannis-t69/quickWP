@@ -54,12 +54,6 @@ Most of the time during testing i need the WordPress installation to have a cert
 The `wordpress-quickwp-script-SQL-Backup.sh` script asks for a description which will be added to the SQL dump's filename.
 The `wordpress-quickwp-script-SQL-Restore.sh` script lists the .sql files found in the script's configured database dump folder, which then i can copy/paste to restore the database state needed
 
-## Cleanup and reinstall
-
-By default the script resets the installation and spins up the container in detached mode.
-If you don't want to remove the current WordPress installation and reinstall it you can run:  
-`./quickwp -r no`
-
 ## Delete container and image
 
-- `reset-installation.sh` can be used to delete WordPress and MySQL files, stop and delete the container and image
+- `reset-installation.sh` can be used to delete WordPress, logfolders and MySQL files, stop and delete the container and image

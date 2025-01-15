@@ -1,9 +1,11 @@
-version: "3"
 services:
   www:
     build: ./docker
     env_file: ./.env
     container_name: quickwp
+    hostname: quickwp
+    tty: true
+    stdin_open: true
     environment:
       - TZ=Europe/Athens
       - QUICKWP_URL=${QUICKWP_URL}
@@ -12,16 +14,18 @@ services:
       - QUICKWP_REINSTALL=${QUICKWP_REINSTALL}
       - QUICKWP_PORT=${QUICKWP_PORT}
     ports:
+      - "41445:443"
       - "6080:80"
       - "6306:3306"
     volumes:
       - ./public_html/:/var/www/html/
       - ./mysql-database/:/var/lib/mysql/
       - ./root:/root
+      - ./log:/var/log
     networks:
       - quickwp
-    restart: "unless-stopped"
+    restart: "no"
 
 networks:
   quickwp:
-     enable_ipv6: false
+    enable_ipv6: false

@@ -61,10 +61,29 @@ RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 # Copy local plugins to image
 COPY plugins /tmp/plugins
 
+# Copy ssl directory with the ssl certificates to image
+COPY ssl/* /etc/ssl/
+
+# Copy nginx custom snippet files and config to image
+COPY snippets/* /etc/nginx/snippets
+COPY nginx.conf /etc/nginx/nginx.conf
+
 # Add our local configs in.
-ADD default /etc/nginx/sites-available/
+ADD default-ssl.conf /etc/nginx/sites-available/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh
+
+# Enable nginx ssl configuration
+RUN rm /etc/nginx/sites-enabled/default
+RUN ln -s /etc/nginx/sites-available/default-ssl.conf /etc/nginx/sites-enabled/default-ssl.conf
+
+# # Create fast-cgi cache directory
+RUN mkdir -p /var/cache/nginx/cache/
+RUN chown -R www-data:www-data /var/cache/nginx/cache
+
+# Set the php options needed
+RUN sed -i 's/upload_max_filesize = 2M/upload_max_filesize = 256M/g' /etc/php/8.3/fpm/php.ini
+RUN sed -i 's/post_max_size = 8M/post_max_size = 256M/g' /etc/php/8.3/fpm/php.ini
 
 # Install wp-cli
 RUN bash -c "curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar"
@@ -80,4 +99,6 @@ RUN bash -c "mv /composer.phar /usr/local/bin/composer"
 WORKDIR /var/www/html/
 
 # Start daemons.
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "-c", "/entrypoint.sh"]
+
+

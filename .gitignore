@@ -9,3 +9,5 @@ root/
 temp/
 docker/plugins/
 ssl/
+docker/default-ssl.conf
+log/*
