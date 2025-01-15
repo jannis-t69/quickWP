@@ -10,3 +10,4 @@ temp/
 docker/plugins/
 docker/ssl/cloudflare*
 log/*
+docker/default-ssl.conf
