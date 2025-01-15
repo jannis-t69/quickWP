@@ -8,6 +8,6 @@ demos/
 root/
 temp/
 docker/plugins/
-docker/ssl/*
+docker/ssl/cloudflare*
 docker/default-ssl.conf
 log/*
